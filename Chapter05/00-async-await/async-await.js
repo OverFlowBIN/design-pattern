@@ -6,20 +6,20 @@
 function fetchUser() {
   return new Promise((resolve, reject) => {
     // do network request in 10 secs...
-    return resolve("OverFlowBIN");
+    return resolve('OverFlowBIN');
   });
 }
 
 const user = fetchUser();
-console.log("user: ", user);
+console.log('user: ', user);
 
 async function fetchUser2() {
   // do network request in 10 secs...
-  return "OverFlowBIN";
+  return 'OverFlowBIN';
 }
 
 const user2 = fetchUser2();
-console.log("user: ", user);
+console.log('user: ', user);
 
 // 2. await
 function delay(ms) {
@@ -29,12 +29,18 @@ function delay(ms) {
 // async가 붙게 되면 해당 함수는 Promise 객체를 return 한다
 async function getApple() {
   await delay(1000);
-  return "🍎";
+  return '🍎';
 }
+console.log('getApple: ', getApple());
+
+async function async_test() {
+  return 'a';
+}
+console.log('async_test: ', async_test());
 
 async function getBanana() {
   await delay(1000);
-  return "🍌";
+  return '🍌';
 }
 
 async function pickFruits() {
@@ -48,9 +54,9 @@ async function pickFruits() {
 // 3. 병렬적 실행
 async function pickFruits2() {
   const applePromise = getApple(); // Promise를 만들자 마자 해당 내부의 코드가 실행이 된다
-  const bananaPromise = getBanana(); // Promise를 만들자 마자 해당 내부의 코드가 실행이 된다
+  const bananaPromise = getBanana();
   const apple = await applePromise; // 만들어진 Promise 객체를 await 처리
-  const banana = await bananaPromise; // 만들어진 Promise 객체를 await 처리
+  const banana = await bananaPromise;
   return `${apple} + ${banana}`;
 }
 
@@ -59,7 +65,7 @@ async function pickFruits2() {
 // 4. 병렬적 실행을 위한 Promise API(Promise.all)
 function pickFruits3() {
   return Promise.all([getApple(), getBanana()]) // [ '🍎', '🍌' ]
-    .then((fruit) => fruit.join(" + "));
+    .then((fruit) => fruit.join(' + '));
 }
 pickFruits3().then(console.log);
 
